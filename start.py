@@ -14,11 +14,11 @@ async def handler(event):
     #await client.send_message(chat,"""https://1.bp.blogspot.com/-LU7wiyBQ54U/X62XOZNZsYI/AAAAAAAAIr8/zcrp5JWSxKoGtO_hUE2jue7E0wcqDbU6ACLcBGAsYHQ/s1200/YeQIGEd.jpg""")
 
 @client.on(events.NewMessage(pattern='hi'))
-async def handler(event):
+async def handler2(event):
     
     chat = await event.get_chat()
-    await client.send_file(chat,r1["image_url"],caption = r1["title"])
-    markup = client.build_reply_markup(Button.url("stream",urls.stream_baseurl+g1))
+    #await client.send_file(chat,r1["image_url"],caption = r1["title"])
+    #markup = client.build_reply_markup(Button.url("stream",urls.stream_baseurl+g1))
     await client.send_message(chat,"""https://1.bp.blogspot.com/-LU7wiyBQ54U/X62XOZNZsYI/AAAAAAAAIr8/zcrp5JWSxKoGtO_hUE2jue7E0wcqDbU6ACLcBGAsYHQ/s1200/YeQIGEd.jpg""")
     #await client.send_message(chat, "support @urlicupload    "+" TITLE:"+r1["title"]+"   DESCRIPTION:"+r1["description"],file=r1["image_url"], buttons=markup)
             
