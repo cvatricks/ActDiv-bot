@@ -11,25 +11,16 @@ async def handler(event):
     chat = await event.get_chat()
     await client.send_message(chat,"""💁Hey, \n\n    I am Simple Auto Posting Bot
     Simply start and give me some time I will send you random pics, you can also add me in your groups.""")
-    await client.send_photo(chat, photo="https://1.bp.blogspot.com/-LU7wiyBQ54U/X62XOZNZsYI/AAAAAAAAIr8/zcrp5JWSxKoGtO_hUE2jue7E0wcqDbU6ACLcBGAsYHQ/s1200/YeQIGEd.jpg")
+    #await client.send_photo(chat, photo="https://1.bp.blogspot.com/-LU7wiyBQ54U/X62XOZNZsYI/AAAAAAAAIr8/zcrp5JWSxKoGtO_hUE2jue7E0wcqDbU6ACLcBGAsYHQ/s1200/YeQIGEd.jpg")
 
-#@client.on(events.NewMessage(pattern='(?i)https://www.zee5.com'))
+@client.on(events.NewMessage)
 async def handler(event):
-    link =event.text.split('/')[-1]
     
     chat = await event.get_chat()
-    w =link
-    markup = client.build_reply_markup(Button.url("https://www.zee5.com/tvshows/details/sembaruthi/0-6-675/sembaruthi-november-18-2020/0-1-manual_7adlhget67b0"+link))
-    req1 = requests.get(urls.token_url1, headers=headers).json()
-    req2 = requests.get(urls.platform_token).json()["token"]
-    headers["X-Access-Token"] = req2
-    req3 = requests.get(urls.token_url2, headers=headers).json()
-           
-    r1 = requests.get(urls.search_api_endpoint + w,headers=headers, params={"translation":"en", "country":"IN"}).json()
-    g1 = (r1["hls"][0].replace("drm", "hls") + req1["video_token"])
-   # await client.send_file(chat,r1["image_url"],caption = r1["title"])
+    await client.send_file(chat,r1["image_url"],caption = r1["title"])
     markup = client.build_reply_markup(Button.url("stream",urls.stream_baseurl+g1))
-    await client.send_message(chat, "support @urlicupload    "+" TITLE:"+r1["title"]+"   DESCRIPTION:"+r1["description"],file=r1["image_url"], buttons=markup)
+    await client.send_photo(chat, photo="https://1.bp.blogspot.com/-LU7wiyBQ54U/X62XOZNZsYI/AAAAAAAAIr8/zcrp5JWSxKoGtO_hUE2jue7E0wcqDbU6ACLcBGAsYHQ/s1200/YeQIGEd.jpg")
+    #await client.send_message(chat, "support @urlicupload    "+" TITLE:"+r1["title"]+"   DESCRIPTION:"+r1["description"],file=r1["image_url"], buttons=markup)
             
             #rgx = w
    # await client.send_message(chat, g1)
