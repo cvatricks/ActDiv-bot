@@ -5,16 +5,16 @@ import os
 from src import src
 
 client = TelegramClient('anfghohn', int(os.environ.get("APP_ID" )), os.environ.get("API_HASH")).start(bot_token= os.environ.get("TG_BOT_TOKEN"))
-#@client.on(events.NewMessage(pattern='/start'))
-async def handlers(event):
+@client.on(events.NewMessage(pattern='/start'))
+async def handler(event):
     chat = await event.get_chat()
     await client.send_message(chat,"""💁Join @tamil_girls_boys_chatting_group""")
     #await client.send_message(chat,"""https://1.bp.blogspot.com/-LU7wiyBQ54U/X62XOZNZsYI/AAAAAAAAIr8/zcrp5JWSxKoGtO_hUE2jue7E0wcqDbU6ACLcBGAsYHQ/s1200/YeQIGEd.jpg""")
 
 @client.on(events.NewMessage(pattern='bup'))
-async def handler(event):
-    with open("backup.json", "r", encoding="utf8") as f:
-              b_json = json.load(f)
+async def handler2(event):
+    #with open("backup.json", "r", encoding="utf8") as f:
+    #          b_json = json.load(f)
     chat = await event.get_chat()
     await client.send_message(chat,"backup started")
     value = []
