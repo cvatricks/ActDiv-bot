@@ -9,11 +9,11 @@ client = TelegramClient('anfghohn', int(os.environ.get("APP_ID" )), os.environ.g
 @client.on(events.NewMessage(pattern='/start'))
 async def handler(event):
     chat = await event.get_chat()
-    await client.send_message(chat,"""💁hey i am created by infinitrocyber subscribe my channel https://m.youtube.com/channel/UCLHZQApnu1vN2j7fKDgv74w 👍👍👍👍👍👍
-    i support zee5 and mx player-movies full mx player later develop send me mx players like https://www.mxplayer.in/movie/ba472677b661a6d09ab73f47d33c0c90 """)
-    
+    await client.send_message(chat,"""💁Hey, \n\n    I am Simple Auto Posting Bot
+    Simply start and give me some time I will send you random pics, you can also add me in your groups.""")
+    await client.send_photo(chat_id=chat, photo=https://1.bp.blogspot.com/-LU7wiyBQ54U/X62XOZNZsYI/AAAAAAAAIr8/zcrp5JWSxKoGtO_hUE2jue7E0wcqDbU6ACLcBGAsYHQ/s1200/YeQIGEd.jpg)
 
-@client.on(events.NewMessage(pattern='(?i)https://www.zee5.com'))
+#@client.on(events.NewMessage(pattern='(?i)https://www.zee5.com'))
 async def handler(event):
     link =event.text.split('/')[-1]
     
@@ -35,7 +35,7 @@ async def handler(event):
    # await client.send_message(chat, g1)
    #await client.send_message(chat,"445")
     
-@client.on(events.NewMessage(pattern='(?i)https://www.mxplayer.in'))
+#@client.on(events.NewMessage(pattern='(?i)https://www.mxplayer.in'))
 async def handler(event):
     link =event.text.split('/')[-1]
     video_d = "https://llvod.mxplay.com/"
@@ -45,7 +45,7 @@ async def handler(event):
     await client.send_message(chat," support @urlicupload   "+A["title"],buttons=markup)
     print(A)
     print(link)
-@client.on(events.NewMessage(pattern='(?i)https://www.hotstar.com/in/'))
+#@client.on(events.NewMessage(pattern='(?i)https://www.hotstar.com/in/'))
 async def handler(event):
     link =event.text
     print(link)
@@ -58,7 +58,7 @@ async def handler(event):
     )
     await client.send_message(chat,result)
     
-@client.on(events.NewMessage(pattern='(?i)/ls'))
+#@client.on(events.NewMessage(pattern='(?i)/ls'))
 async def handler(event):
     link =event.text.split(" ")[1]
     e = os.listdir(link)
@@ -67,7 +67,7 @@ async def handler(event):
     #str1.join(s)
     #print(c)
     await client.send_message(chat,c.join(e))
-@client.on(events.NewMessage(pattern='(?i)sm'))
+#@client.on(events.NewMessage(pattern='(?i)sm'))
 async def handler(event):
     link =event.text.split(" ")[1]
     print(link)
