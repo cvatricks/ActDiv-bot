@@ -11,7 +11,7 @@ async def handler(event):
     chat = await event.get_chat()
     for images in src["feed"]["entry"]:
         post = images["content"]["$t"]
-        for i in post.split('"')
+        for i in post.split('"'):
           if ".jpg" in i:
                 value.append(i)
     for link in value:
