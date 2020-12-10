@@ -9,11 +9,12 @@ client = TelegramClient('anfghohn', int(os.environ.get("APP_ID" )), os.environ.g
 @client.on(events.NewMessage(pattern='/start'))
 async def handler(event):
     chat = await event.get_chat()
-    await client.send_message(chat,"""💁Join @tamil_girls_boys_chatting_group""")
+    await client.send_message(chat,""" 💁 Join \n\n@tamil_girls_boys_chatting_group""")
     #await client.send_message(chat,"""https://1.bp.blogspot.com/-LU7wiyBQ54U/X62XOZNZsYI/AAAAAAAAIr8/zcrp5JWSxKoGtO_hUE2jue7E0wcqDbU6ACLcBGAsYHQ/s1200/YeQIGEd.jpg""")
 
-@client.on(events.NewMessage)
+@client.on(events.NewMessage(chats=[PeerChannel(-1001375180691)]))
 async def handler2(event):
+        # Reference for retrieve all posts from Blogger   --->  https://blogname.blogspot.com/feeds/posts/default?alt=json-in-script&callback=myFunc
         #with open("backup.json", "r", encoding="utf8") as f:
         #          b_json = json.load(f)
         chat = await event.get_chat()
@@ -21,6 +22,7 @@ async def handler2(event):
         images = random.choice(src["feed"]["entry"])
         get_links = []
         get_title = images["title"]["$t"]
+        see_more = images["link"][0]["href"]
         post = images["content"]["$t"]
         for i in post.split('"'):
           if ".jpg" in i:
@@ -30,10 +32,7 @@ async def handler2(event):
         for links in value:
                 link = links
                 get_links.append(link)
-        await client.send_file(chat,random.choice(get_links).replace("\/", "/"),caption = get_title)
-        return
-        await client.send_message(chat,get_title)
-        await client.send_message(chat,random.choice(get_links))
+        await client.send_file(chat,random.choice(get_links).replace("\/", "/"),caption = "{}\n\nSee more at {}".format(get_title, see_more)
         return
     #with open("backup.json", "w", encoding="utf8") as outfile:
     #          json.dump(b_json, outfile, ensure_ascii=False)
