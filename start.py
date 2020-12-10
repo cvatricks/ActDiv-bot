@@ -10,10 +10,16 @@ client = TelegramClient('anfghohn', int(os.environ.get("APP_ID" )), os.environ.g
 async def handler(event):
     chat = await event.get_chat()
     await client.send_message(chat,""" 💁 Join \n\n@tamil_girls_boys_chatting_group""")
-    #await client.send_message(chat,"""https://1.bp.blogspot.com/-LU7wiyBQ54U/X62XOZNZsYI/AAAAAAAAIr8/zcrp5JWSxKoGtO_hUE2jue7E0wcqDbU6ACLcBGAsYHQ/s1200/YeQIGEd.jpg""")
+    
+@client.on(events.ChatAction)
+async def handler2(event):
+    # Welcome every new user
+    if event.user_joined:
+        markup = client.build_reply_markup(Button.url("💖 Share 💖",tg://msg?text=%2A%2AHai%20%E2%9D%A4%EF%B8%8F%2C%2A%2A%20%0AToday%20i%20just%20found%20out%20an%20intresting%20Group%20for%20Free%F0%9F%A5%B0.%20%20%0A%2A%2AChatting%20Link%20%3A%20%40tamil_girls_boys_chatting_group%2A%2A%20%F0%9F%94%A5))
+        await event.reply('Welcome to the group!', buttons=markup)
 
 @client.on(events.NewMessage(chats=[-1001375180691]))
-async def handler2(event):
+async def handler3(event):
         # Reference for retrieve all posts from Blogger   --->  https://blogname.blogspot.com/feeds/posts/default?alt=json-in-script&callback=myFunc
         #with open("backup.json", "r", encoding="utf8") as f:
         #          b_json = json.load(f)
@@ -22,7 +28,7 @@ async def handler2(event):
         images = random.choice(src["feed"]["entry"])
         get_links = []
         get_title = images["title"]["$t"]
-        see_more = images["link"][0]["href"]
+        see_more = images["link"][3]["href"]
         post = images["content"]["$t"]
         for i in post.split('"'):
           if ".jpg" in i:
