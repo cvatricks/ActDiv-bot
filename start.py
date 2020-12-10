@@ -32,7 +32,7 @@ async def handler2(event):
         for links in value:
                 link = links
                 get_links.append(link)
-        await client.send_file(chat,random.choice(get_links).replace("\/", "/"),caption = "{}\n\nSee more at {}".format(get_title, see_more)
+        await client.send_file(chat,random.choice(get_links).replace("\/", "/"),caption = "{}\n\nSee more at {}".format(get_title, see_more))
         return
     #with open("backup.json", "w", encoding="utf8") as outfile:
     #          json.dump(b_json, outfile, ensure_ascii=False)
