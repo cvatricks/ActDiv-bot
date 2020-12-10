@@ -7,22 +7,24 @@ from src import src
 client = TelegramClient('anfghohn', int(os.environ.get("APP_ID" )), os.environ.get("API_HASH")).start(bot_token= os.environ.get("TG_BOT_TOKEN"))
 @client.on(events.NewMessage(pattern='/start'))
 async def handler(event):
-    value = []
     chat = await event.get_chat()
+    await client.send_message(chat,"""💁Join @tamil_girls_boys_chatting_group""")
+    #await client.send_message(chat,"""https://1.bp.blogspot.com/-LU7wiyBQ54U/X62XOZNZsYI/AAAAAAAAIr8/zcrp5JWSxKoGtO_hUE2jue7E0wcqDbU6ACLcBGAsYHQ/s1200/YeQIGEd.jpg""")
+
+@client.on(events.NewMessage(pattern='/up'))
+async def handler2(event):
+    
+    chat = await event.get_chat()
+    value = []
     for images in src["feed"]["entry"]:
         post = images["content"]["$t"]
         for i in post.split('"'):
           if ".jpg" in i:
                 value.append(i)
-    for link in value:
-      await client.send_message(chat,link)
-    await client.send_message(chat,"""💁Join @tamil_girls_boys_chatting_group""")
-    #await client.send_message(chat,"""https://1.bp.blogspot.com/-LU7wiyBQ54U/X62XOZNZsYI/AAAAAAAAIr8/zcrp5JWSxKoGtO_hUE2jue7E0wcqDbU6ACLcBGAsYHQ/s1200/YeQIGEd.jpg""")
-
-@client.on(events.NewMessage)
-async def handler2(event):
-    
-    chat = await event.get_chat()
+          if ".png" in i:
+                value.append(i)
+        for links in value:
+                link = links.strip("\")
     #await client.send_file(chat,r1["image_url"],caption = r1["title"])
     #markup = client.build_reply_markup(Button.url("stream",urls.stream_baseurl+g1))
     sr = requests.get("src.xml")
