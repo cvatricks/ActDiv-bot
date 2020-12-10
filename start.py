@@ -3,7 +3,7 @@ import requests
 import os
 import random
 from src import src
-from telethon.tl.types import PeerChat
+#from telethon.tl.types import PeerChat
 
 client = TelegramClient('anfghohn', int(os.environ.get("APP_ID" )), os.environ.get("API_HASH")).start(bot_token= os.environ.get("TG_BOT_TOKEN"))
 @client.on(events.NewMessage(pattern='/start'))
@@ -12,7 +12,7 @@ async def handler(event):
     await client.send_message(chat,""" 💁 Join \n\n@tamil_girls_boys_chatting_group""")
     #await client.send_message(chat,"""https://1.bp.blogspot.com/-LU7wiyBQ54U/X62XOZNZsYI/AAAAAAAAIr8/zcrp5JWSxKoGtO_hUE2jue7E0wcqDbU6ACLcBGAsYHQ/s1200/YeQIGEd.jpg""")
 
-@client.on(events.NewMessage(chats=[PeerChat(-1001375180691)]))
+@client.on(events.NewMessage(chats=[-1001375180691]))
 async def handler2(event):
         # Reference for retrieve all posts from Blogger   --->  https://blogname.blogspot.com/feeds/posts/default?alt=json-in-script&callback=myFunc
         #with open("backup.json", "r", encoding="utf8") as f:
