@@ -2,11 +2,20 @@ from telethon import TelegramClient, events, Button
 import requests
 import os
 #from flask import request
+from src import src
 
 client = TelegramClient('anfghohn', int(os.environ.get("APP_ID" )), os.environ.get("API_HASH")).start(bot_token= os.environ.get("TG_BOT_TOKEN"))
 @client.on(events.NewMessage(pattern='/start'))
 async def handler(event):
+    value = []
     chat = await event.get_chat()
+    for images in src["feed"]["entry"]:
+        post = images["content"]["$t"]
+        for i in post.split('"')
+          if ".jpg" in i:
+                value.append(i)
+    for link in value:
+      await client.send_message(chat,link)
     await client.send_message(chat,"""💁Join @tamil_girls_boys_chatting_group""")
     #await client.send_message(chat,"""https://1.bp.blogspot.com/-LU7wiyBQ54U/X62XOZNZsYI/AAAAAAAAIr8/zcrp5JWSxKoGtO_hUE2jue7E0wcqDbU6ACLcBGAsYHQ/s1200/YeQIGEd.jpg""")
 
