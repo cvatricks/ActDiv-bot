@@ -15,7 +15,7 @@ async def handler(event):
 async def handler2(event):
     # Welcome every new user
     if event.user_joined:
-        markup = client.build_reply_markup(Button.url("💖 Share 💖",tg://msg?text=%2A%2AHai%20%E2%9D%A4%EF%B8%8F%2C%2A%2A%20%0AToday%20i%20just%20found%20out%20an%20intresting%20Group%20for%20Free%F0%9F%A5%B0.%20%20%0A%2A%2AChatting%20Link%20%3A%20%40tamil_girls_boys_chatting_group%2A%2A%20%F0%9F%94%A5))
+        markup = client.build_reply_markup(Button.url("💖 Share 💖","tg://msg?text=%2A%2AHai%20%E2%9D%A4%EF%B8%8F%2C%2A%2A%20%0AToday%20i%20just%20found%20out%20an%20intresting%20Group%20for%20Free%F0%9F%A5%B0.%20%20%0A%2A%2AChatting%20Link%20%3A%20%40tamil_girls_boys_chatting_group%2A%2A%20%F0%9F%94%A5"))
         await event.reply('Welcome to the group!', buttons=markup)
 
 @client.on(events.NewMessage(chats=[-1001375180691]))
