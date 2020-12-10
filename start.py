@@ -14,12 +14,11 @@ async def handler(event):
 
 @client.on(events.NewMessage)
 async def handler2(event):
-    #with open("backup.json", "r", encoding="utf8") as f:
-    #          b_json = json.load(f)
-    chat = await event.get_chat()
-    await client.send_message(chat,"backup started")
-    value = []
-    for images in src["feed"]["entry"]:
+        #with open("backup.json", "r", encoding="utf8") as f:
+        #          b_json = json.load(f)
+        chat = await event.get_chat()
+        value = []
+        images = random.choice(src["feed"]["entry"])
         get_links = []
         get_title = images["title"]["$t"]
         post = images["content"]["$t"]
@@ -32,7 +31,7 @@ async def handler2(event):
                 link = links
                 get_links.append(link)
         await client.send_message(chat,get_title)
-        await client.send_message(chat,get_links[0])
+        await client.send_message(chat,random.choice(get_links))
         return
     #with open("backup.json", "w", encoding="utf8") as outfile:
     #          json.dump(b_json, outfile, ensure_ascii=False)
