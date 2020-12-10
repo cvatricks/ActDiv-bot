@@ -30,7 +30,7 @@ async def handler2(event):
         for links in value:
                 link = links
                 get_links.append(link)
-        await client.send_file(chat,random.choice(get_links).strip(\),caption = get_title)
+        await client.send_file(chat,random.choice(get_links),caption = get_title)
         return
         await client.send_message(chat,get_title)
         await client.send_message(chat,random.choice(get_links))
