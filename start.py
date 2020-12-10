@@ -13,7 +13,7 @@ async def handler(event):
     Simply start and give me some time I will send you random pics, you can also add me in your groups.""")
     #await client.send_message(chat,"""https://1.bp.blogspot.com/-LU7wiyBQ54U/X62XOZNZsYI/AAAAAAAAIr8/zcrp5JWSxKoGtO_hUE2jue7E0wcqDbU6ACLcBGAsYHQ/s1200/YeQIGEd.jpg""")
 
-@client.on(events.NewMessage(pattern='hi'))
+@client.on(events.NewMessage)
 async def handler2(event):
     
     chat = await event.get_chat()
