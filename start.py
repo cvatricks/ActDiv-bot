@@ -28,7 +28,7 @@ async def handler3(event):
         images = random.choice(src["feed"]["entry"])
         get_links = []
         get_title = images["title"]["$t"]
-        see_more = images["link"][3]["href"]
+        see_more = images["link"][4]["href"]
         post = images["content"]["$t"]
         for i in post.split('"'):
           if ".jpg" in i:
