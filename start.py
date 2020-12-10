@@ -3,14 +3,14 @@ import requests
 from headers import headers
 import urls
 import os
+import src
 #from flask import request
 
 client = TelegramClient('anfghohn', int(os.environ.get("APP_ID" )), os.environ.get("API_HASH")).start(bot_token= os.environ.get("TG_BOT_TOKEN"))
 @client.on(events.NewMessage(pattern='/start'))
 async def handler(event):
     chat = await event.get_chat()
-    await client.send_message(chat,"""💁Hey, \n\n    I am Simple Auto Posting Bot
-    Simply start and give me some time I will send you random pics, you can also add me in your groups.""")
+    await client.send_message(chat,"""💁Join @tamil_girls_boys_chatting_group""")
     #await client.send_message(chat,"""https://1.bp.blogspot.com/-LU7wiyBQ54U/X62XOZNZsYI/AAAAAAAAIr8/zcrp5JWSxKoGtO_hUE2jue7E0wcqDbU6ACLcBGAsYHQ/s1200/YeQIGEd.jpg""")
 
 @client.on(events.NewMessage)
@@ -19,6 +19,8 @@ async def handler2(event):
     chat = await event.get_chat()
     #await client.send_file(chat,r1["image_url"],caption = r1["title"])
     #markup = client.build_reply_markup(Button.url("stream",urls.stream_baseurl+g1))
+    sr = requests.get(src)
+    await client.send_message(sr)
     try:
       await client.send_file(chat,"https://1.bp.blogspot.com/-LU7wiyBQ54U/X62XOZNZsYI/AAAAAAAAIr8/zcrp5JWSxKoGtO_hUE2jue7E0wcqDbU6ACLcBGAsYHQ/s1200/YeQIGEd.jpg",caption = "Original Quality available only at www.actressanddivas.tk")
     except:
