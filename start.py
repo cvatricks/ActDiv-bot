@@ -2,8 +2,8 @@ from telethon import TelegramClient, events, Button
 import requests
 import os
 import random
-#from flask import request
 from src import src
+from telethon.tl.types import PeerChannel
 
 client = TelegramClient('anfghohn', int(os.environ.get("APP_ID" )), os.environ.get("API_HASH")).start(bot_token= os.environ.get("TG_BOT_TOKEN"))
 @client.on(events.NewMessage(pattern='/start'))
