@@ -1,6 +1,7 @@
 from telethon import TelegramClient, events, Button
 import requests
 import os
+import random
 #from flask import request
 from src import src
 
@@ -11,14 +12,13 @@ async def handler(event):
     await client.send_message(chat,"""💁Join @tamil_girls_boys_chatting_group""")
     #await client.send_message(chat,"""https://1.bp.blogspot.com/-LU7wiyBQ54U/X62XOZNZsYI/AAAAAAAAIr8/zcrp5JWSxKoGtO_hUE2jue7E0wcqDbU6ACLcBGAsYHQ/s1200/YeQIGEd.jpg""")
 
-@client.on(events.NewMessage(pattern='bup'))
+@client.on(events.NewMessage)
 async def handler2(event):
     #with open("backup.json", "r", encoding="utf8") as f:
     #          b_json = json.load(f)
     chat = await event.get_chat()
     await client.send_message(chat,"backup started")
     value = []
-    count = 0
     for images in src["feed"]["entry"]:
         get_links = []
         get_title = images["title"]["$t"]
@@ -31,17 +31,14 @@ async def handler2(event):
         for links in value:
                 link = links
                 get_links.append(link)
-        b_json["blog"].append({
-        "title": "{}".format(get_title),
-        "links": "{}".format(get_links)
-        })
-        count = count + 1
         await client.send_message(chat,get_title)
-    with open("backup.json", "w", encoding="utf8") as outfile:
-              json.dump(b_json, outfile, ensure_ascii=False)
-    await client.send_message(chat,"backup finished")
-    await client.send_message(chat,count)
-    return
+        await client.send_message(chat,get_links[0])
+        return
+    #with open("backup.json", "w", encoding="utf8") as outfile:
+    #          json.dump(b_json, outfile, ensure_ascii=False)
+    #await client.send_message(chat,"backup finished")
+    #await client.send_message(chat,count)
+    #return
     #await client.send_file(chat,r1["image_url"],caption = r1["title"])
     #markup = client.build_reply_markup(Button.url("stream",urls.stream_baseurl+g1))
     sr = requests.get("src.xml")
