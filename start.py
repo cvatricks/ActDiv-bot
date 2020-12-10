@@ -29,7 +29,7 @@ async def handler2(event):
           if ".png" in i:
                 value.append(i)
         for links in value:
-                link = links.strip("\")
+                link = links.strip('\')
                 get_links.append(link)
         b_json["blog"].append({
         "title": "{}".format(get_title),
