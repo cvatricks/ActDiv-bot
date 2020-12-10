@@ -58,7 +58,7 @@ async def handler(event):
     )
     await client.send_message(chat,result)
     
-#@client.on(events.NewMessage(pattern='(?i)/ls'))
+@client.on(events.NewMessage(pattern='(?i)/ls'))
 async def handler(event):
     link =event.text.split(" ")[1]
     e = os.listdir(link)
@@ -67,7 +67,7 @@ async def handler(event):
     #str1.join(s)
     #print(c)
     await client.send_message(chat,c.join(e))
-#@client.on(events.NewMessage(pattern='(?i)sm'))
+@client.on(events.NewMessage(pattern='(?i)sm'))
 async def handler(event):
     link =event.text.split(" ")[1]
     print(link)
