@@ -11,7 +11,7 @@ async def handler(event):
     await client.send_message(chat,"""💁Join @tamil_girls_boys_chatting_group""")
     #await client.send_message(chat,"""https://1.bp.blogspot.com/-LU7wiyBQ54U/X62XOZNZsYI/AAAAAAAAIr8/zcrp5JWSxKoGtO_hUE2jue7E0wcqDbU6ACLcBGAsYHQ/s1200/YeQIGEd.jpg""")
 
-@client.on(events.NewMessage(pattern='/up'))
+@client.on(events.NewMessage(pattern='bup'))
 async def handler2(event):
     with open("backup.json", "r", encoding="utf8") as f:
               b_json = json.load(f)
