@@ -39,7 +39,7 @@ async def handler3(event):
         for links in value:
                 link = links
                 get_links.append(link)
-        genshort = "https://api-ssl.bitly.com/v3/shorten?access_token=3c3d7540eb2aeef09fa476e1f49833aeb919e57a&longUrl=" + "http://superbotzproxy.herokuapp.com/proxy/" + see_more.replace("\/", "/")
+        genshort = "https://api-ssl.bitly.com/v3/shorten?access_token=3c3d7540eb2aeef09fa476e1f49833aeb919e57a&longUrl=" + "http://superbotzproxy2.herokuapp.com/proxy/" + see_more.replace("\/", "/")
         shortlink = requests.get(genshort).json()
         await client.send_file(chat,random.choice(get_links).replace("\/", "/"),caption = "{}\n\nSee more at {}".format(get_title, shortlink["data"]["url"]))
         return
