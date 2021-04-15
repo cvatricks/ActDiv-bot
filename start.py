@@ -12,7 +12,7 @@ async def handler(event):
     chat = await event.get_chat()
     await client.send_message(chat,""" 💁 Join \n\n@tamil_girls_boys_chatting_group""")
 
-@client.on(events.NewMessage(chats=[-523451499]))
+@client.on(events.NewMessage(chats=[-523451499], pattern='/send'))
 async def sendvid(event):
     chat = await event.get_chat()
     await client.send_message(chat,""" OK """)
