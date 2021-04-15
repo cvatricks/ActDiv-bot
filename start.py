@@ -15,7 +15,7 @@ async def handler(event):
 @client.on(events.NewMessage(chats=[-523451499], pattern='/send'))
 async def sendvid(event):
     chat = await event.get_chat()
-    await client.send_message(chat,""" OK """)
+    await client.send_message(chat,event.message)
     
 @client.on(events.ChatAction)
 async def handler2(event):
