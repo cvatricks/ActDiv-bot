@@ -12,10 +12,10 @@ async def handler(event):
     chat = await event.get_chat()
     await client.send_message(chat,""" 💁 Join \n\n@tamil_girls_boys_chatting_group""")
 
-@client.on(events.NewMessage(pattern='/send'))
+@client.on(events.NewMessage(pattern='/send', chats=[-523451499]))
 async def send(event):
     chat = await event.get_chat()
-    await client.send_message(chat,chat)
+    await client.send_message(chat,text=chat)
     
 @client.on(events.ChatAction)
 async def handler2(event):
