@@ -16,7 +16,17 @@ async def handler(event):
 async def sendvid(event):
     chat = await event.get_chat()
     content = await event.get_reply_message()
-    await client.send_message(chat,content)
+    await client.send_message(chat, 'Yes or no?', buttons=[
+        Button.inline('Yes!', b'yes'),
+        Button.inline('Nope', b'no')
+    ])
+
+@client.on(events.CallbackQuery)
+async def checkpoint(event):
+    if event.data == b'yes':
+        await event.answer('Correct answer!')
+    if event.data == b'no':
+        await event.answer('Wrong Answer!')
     
 @client.on(events.ChatAction)
 async def handler2(event):
