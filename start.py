@@ -17,17 +17,18 @@ async def sendvid(event):
     chat = await event.get_chat()
     content = await event.get_reply_message()
     await client.send_message(chat, "id is {}".format(content))
-    await client.send_message(chat, 'Yes or no?', buttons=[
-        Button.inline('Yes!', b'yes'),
-        Button.inline('Nope', b'no')
+    await client.send_message(-1001375180691, “Warning.! Are you Adult?“, buttons=[
+        Button.inline('Yes!', "{}={}".format(content.message,content.message.id)),
+        Button.inline('No', b'no')
     ])
 
 @client.on(events.CallbackQuery)
 async def checkpoint(event):
-    if event.data == b'yes':
-        await event.answer('Correct answer!')
+    if "=" in event.data:
+        msg = event.data.split("=")
+        await client.forward_messages(event.CallbackQuery.id,msg[-1],-523451499,)
     if event.data == b'no':
-        await event.answer('Wrong Answer!')
+        await client.reply('Ok., Thanks for the response.')
     
 @client.on(events.ChatAction)
 async def handler2(event):
