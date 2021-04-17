@@ -17,7 +17,7 @@ async def sendvid(event):
     chat = await event.get_chat()
     content = await event.get_reply_message()
     await client.send_message(chat, "id is {}".format(content))
-    await client.send_message(-1001375180691, “Warning.! Are you Adult?“, buttons=[
+    await client.send_message(-1001375180691, """Warning.! Are you Adult?""", buttons=[
         Button.inline('Yes!', "{}={}".format(content.message,content.message.id)),
         Button.inline('No', b'no')
     ])
