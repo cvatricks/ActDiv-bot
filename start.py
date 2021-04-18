@@ -19,15 +19,15 @@ async def sendvid(event):
     await client.send_message(chat, "{}_{} is Uploaded".format(content.message, content.id), buttons=[
         Button.inline('📥 Download', b'download')
     ])
-    await client.send_message(-1001375180691, """Warning.! Are you Adult?""", buttons=[
-        Button.inline('Yes!', "{}={}".format(content.message,content.id)),
-        Button.inline('No', b'no')
-    ])
+    #await client.send_message(-1001375180691, """Warning.! Are you Adult?""", buttons=[
+    #    Button.inline('Yes!', "{}={}".format(content.message,content.id)),
+    #    Button.inline('No', b'no')
+    #])
 
 @client.on(events.CallbackQuery)
 async def checkpoint(event):
     if event.data == b'download':
-        await event.reply("{}".format(event.id))
+        await event.reply("{}".format(event.query))
     if "=" in event.data:
         msg = event.data.split("=")
         await client.forward_messages(event.CallbackQuery.id,msg[-1],-523451499,)
