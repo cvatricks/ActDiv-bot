@@ -26,13 +26,13 @@ async def sendvid(event):
 
 @client.on(events.CallbackQuery)
 async def checkpoint(event):
-    if msgid in event.data:
+    if "msgid" in event.data:
         msgid2="msgid2" + "_" + event.query.user_id + "_" + event.data.split('_')[-1]
         await event.reply("[Hey,](tg://user?id={}) Are you Adult?".format(event.query.user_id), buttons=[
             Button.inline('👍 Yes', data=msgid2),
             Button.inline('👎 No', b'ano')
         ])
-    if msgid2 in event.data:
+    if "msgid2" in event.data:
         msg = event.data.split("_")[-1]
         await client.forward_messages(event.CallbackQuery.id,msg,-523451499,)
     if event.data == b'ano':
