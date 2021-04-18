@@ -27,7 +27,7 @@ async def sendvid(event):
 @client.on(events.CallbackQuery)
 async def checkpoint(event):
     if event.data == b'download':
-        await event.reply("Hey, User(https://tg?user={})".format(event.query.user_id))
+        await event.reply("[Hey](tg://user?id={})".format(event.query.user_id))
     if "=" in event.data:
         msg = event.data.split("=")
         await client.forward_messages(event.CallbackQuery.id,msg[-1],-523451499,)
