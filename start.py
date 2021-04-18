@@ -28,7 +28,7 @@ async def sendvid(event):
 async def checkpoint(event):
     if event.data == b'download':
         await event.reply("[Hey](tg://user?id={}) Are you 🔞Adult?".format(event.query.user_id), buttons=[
-            Button.inline('👍 Yes', b'ayes')
+            Button.inline('👍 Yes', b'ayes'),
             Button.inline('👎 No', b'ano')
         ])
     if "=" in event.data:
