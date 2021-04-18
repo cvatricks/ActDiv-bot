@@ -17,7 +17,7 @@ async def sendvid(event):
     chat = await event.get_chat()
     content = await event.get_reply_message()
     await client.send_message(chat, "{}_{} is Uploaded".format(content.message, content.id), buttons=[
-        Button.inline('📥 Download', b'download')
+        Button.inline('📥 Download', data="msgid_{}".format(content.id))
     ])
     #await client.send_message(-1001375180691, """Warning.! Are you Adult?""", buttons=[
     #    Button.inline('Yes!', "{}={}".format(content.message,content.id)),
@@ -26,16 +26,18 @@ async def sendvid(event):
 
 @client.on(events.CallbackQuery)
 async def checkpoint(event):
-    if event.data == b'download':
-        await event.reply("[Hey](tg://user?id={}) Are you 🔞Adult?".format(event.query.user_id), buttons=[
-            Button.inline('👍 Yes', b'ayes'),
+    if msgid in event.data:
+        msgid2="msgid2" + "_" + event.query.user_id + "_" + event.data.split('_')[-1]
+        await event.reply("[Hey,](tg://user?id={}) Are you Adult?".format(event.query.user_id), buttons=[
+            Button.inline('👍 Yes', data=msgid2),
             Button.inline('👎 No', b'ano')
         ])
-    if "=" in event.data:
-        msg = event.data.split("=")
-        await client.forward_messages(event.CallbackQuery.id,msg[-1],-523451499,)
-    if event.data == b'no':
+    if msgid2 in event.data:
+        msg = event.data.split("_")[-1]
+        await client.forward_messages(event.CallbackQuery.id,msg,-523451499,)
+    if event.data == b'ano':
         await client.reply('Ok., Thanks for the response.')
+        await event.delete()
     
 @client.on(events.ChatAction)
 async def handler2(event):
