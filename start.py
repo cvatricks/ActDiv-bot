@@ -47,8 +47,8 @@ async def checkpoint(event):
     if decoded == "ano":
         await client.reply('Ok., Thanks for the response.')
         await event.delete()
-  except:
-    await event.answer("getting id failed")
+  except Exception as e:
+    await event.reply(e)
     
 @client.on(events.ChatAction)
 async def handler2(event):
