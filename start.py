@@ -27,18 +27,28 @@ async def sendvid(event):
 
 @client.on(events.CallbackQuery)
 async def checkpoint(event):
-    if "msgid" in event.data:
-        msgid2="msgid2" + "_" + event.query.user_id + "_" + event.data.split('_')[-1]
+  try:
+    decoded=event.data.decode()
+  except:
+    pass
+  try:
+    if msgid in decoded:
+        msgid2="msgid2" + "_" + event.query.user_id + "_" + decoded.split('_')[-1]
         await event.reply("[Hey,](tg://user?id={}) Are you Adult?".format(event.query.user_id), buttons=[
-            Button.inline('👍 Yes', data=msgid2),
+            Button.inline('👍 Yes', msgid2.encode()),
             Button.inline('👎 No', b'ano')
         ])
-    if "msgid2" in event.data:
-        msg = event.data.split("_")[-1]
-        await client.forward_messages(event.CallbackQuery.id,msg,-523451499,)
-    if event.data == b'ano':
+    if "msgid2" in decoded:
+      if decoded.split("_")[-2] == event.CallbackQuery.id:
+        msg = decoded.split("_")[-1]
+        await client.forward_messages(event.CallbackQuery.id,msg,-523451499)
+      else:
+        await client.answer("Make your own download request.")
+    if decoded == "ano":
         await client.reply('Ok., Thanks for the response.')
         await event.delete()
+  except:
+    pass
     
 @client.on(events.ChatAction)
 async def handler2(event):
