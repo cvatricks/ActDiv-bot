@@ -48,7 +48,6 @@ async def checkpoint(event):
     except:
       if decoded == "ano":
         await client.reply('Ok., Thanks for the response.')
-        await event.delete()
   except:
     pass
     
