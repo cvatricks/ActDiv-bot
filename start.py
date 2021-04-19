@@ -39,10 +39,10 @@ async def checkpoint(event):
             Button.inline('👎 No', b'ano')
         ])
 
-    if decoded.split("_")[-2] == event.CallbackQuery.id:
+    if decoded.split("_")[-2] == event.query.user_id:
       if "req2" in decoded:
         msg = decoded.split("_")[-1]
-        await client.forward_messages(event.CallbackQuery.id,msg,-523451499)
+        await client.forward_messages(event.query.user_id,msg,-523451499)
     else:
       await client.answer("Make your own download request.")
     if decoded == "ano":
