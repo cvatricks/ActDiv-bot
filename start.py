@@ -48,7 +48,7 @@ async def checkpoint(event):
         await client.reply('Ok., Thanks for the response.')
         await event.delete()
   except Exception as e:
-    await event.reply(e)
+    await event.reply("{}".format(e))
     
 @client.on(events.ChatAction)
 async def handler2(event):
