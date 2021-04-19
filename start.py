@@ -33,9 +33,9 @@ async def checkpoint(event):
     await event.answer("decode failed")
   try:
     if "msgid" in decoded:
-        msgid2="msgid2" + "_" + event.query.user_id + "_" + decoded.split('_')[-1]
+        msgid2="msgid2" + "_" + "{}".format(event.query.user_id) + "_" + "{}".format(decoded.split('_')[-1])
         await event.reply("[Hey,](tg://user?id={}) Are you Adult?".format(event.query.user_id), buttons=[
-            Button.inline('👍 Yes', str(msgid2).encode()),
+            Button.inline('👍 Yes', msgid2.encode()),
             Button.inline('👎 No', b'ano')
         ])
 
