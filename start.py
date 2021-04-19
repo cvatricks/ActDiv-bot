@@ -33,14 +33,14 @@ async def checkpoint(event):
     await event.answer("decode failed")
   try:
     if "msgid" in decoded:
-        msgid2="msgid2" + "_" + "{}".format(event.query.user_id) + "_" + "{}".format(decoded.split('_')[-1])
+        msgid2="req2" + "_" + "{}".format(event.query.user_id) + "_" + "{}".format(decoded.split('_')[-1])
         await event.reply("[Hey,](tg://user?id={}) Are you Adult?".format(event.query.user_id), buttons=[
             Button.inline('👍 Yes', msgid2.encode()),
             Button.inline('👎 No', b'ano')
         ])
 
     if decoded.split("_")[-2] == event.CallbackQuery.id:
-      if "msgid2" in decoded:
+      if "req2" in decoded:
         msg = decoded.split("_")[-1]
         await client.forward_messages(event.CallbackQuery.id,msg,-523451499)
     else:
