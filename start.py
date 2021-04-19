@@ -38,12 +38,15 @@ async def checkpoint(event):
             Button.inline('👍 Yes', msgid2.encode()),
             Button.inline('👎 No', b'ano')
         ])
+
+    await event.reply("1st ok")
     if "msgid2" in decoded:
       if decoded.split("_")[-2] == event.CallbackQuery.id:
         msg = decoded.split("_")[-1]
         await client.forward_messages(event.CallbackQuery.id,msg,-523451499)
       else:
         await client.answer("Make your own download request.")
+    await event.reply("2nd ok")
     if decoded == "ano":
         await client.reply('Ok., Thanks for the response.')
         await event.delete()
