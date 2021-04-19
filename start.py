@@ -30,7 +30,7 @@ async def checkpoint(event):
   try:
     decoded=event.data.decode()
   except:
-    pass
+    await event.answer("decode failed")
   try:
     if "msgid" in decoded:
         msgid2="msgid2" + "_" + event.query.user_id + "_" + decoded.split('_')[-1]
@@ -48,7 +48,7 @@ async def checkpoint(event):
         await client.reply('Ok., Thanks for the response.')
         await event.delete()
   except:
-    pass
+    await event.answer("getting id failed")
     
 @client.on(events.ChatAction)
 async def handler2(event):
