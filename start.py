@@ -38,18 +38,19 @@ async def checkpoint(event):
             Button.inline('👍 Yes', msgid2.encode()),
             Button.inline('👎 No', b'ano')
         ])
-
-    if decoded.split("_")[-2] == event.query.user_id:
+    try:
+     if decoded.split("_")[-2] == event.query.user_id:
       if "req2" in decoded:
         msg = decoded.split("_")[-1]
         await client.forward_messages(event.query.user_id,msg,-523451499)
-    else:
+     else:
       await client.answer("Make your own download request.")
-    if decoded == "ano":
+    except:
+      if decoded == "ano":
         await client.reply('Ok., Thanks for the response.')
         await event.delete()
-  except Exception as e:
-    await event.reply("{}".format(e))
+  except:
+    pass
     
 @client.on(events.ChatAction)
 async def handler2(event):
