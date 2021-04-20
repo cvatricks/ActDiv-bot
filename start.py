@@ -44,6 +44,7 @@ async def checkpoint(event):
       if "req2" in decoded:
         await event.reply("{}".format(event.query.user_id))
         msg = decoded.split("_")[-1]
+        await event.answer("before forward")
         await client.forward_messages(event.query.user_id, msg, -523451499)
      else:
       await client.answer("Make your own download request.")
