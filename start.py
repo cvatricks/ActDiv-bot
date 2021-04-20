@@ -39,7 +39,7 @@ async def checkpoint(event):
             Button.inline('👎 No', b'ano')
         ])
     try:
-     if decoded.split("_")[-2] == event.query.user_id:
+     if decoded.split("_")[-1] == event.query.user_id:
       decoded=decoded.strip()
       if "req2" in decoded:
         await event.reply("{}".format(event.query.user_id))
