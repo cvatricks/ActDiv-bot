@@ -15,7 +15,8 @@ async def handler(event):
 @client.on(events.NewMessage(chats=[-523451499], pattern='/send'))
 async def sendvid(event):
     chat = await event.get_chat()
-    content = await event.get_reply_message()
+    conten = await event.get_reply_message()
+    content = "{}".format(conten)
     msgid = "msgid_{}".format(content.id)
     #await client.send_message(chat,"test", file=content)
     await client.send_message(chat, "🎞️ {} is Uploaded".format(content.message), buttons=[
