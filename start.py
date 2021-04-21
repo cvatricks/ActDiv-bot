@@ -17,9 +17,10 @@ async def sendvid(event):
     chat = await event.get_chat()
     content = await event.get_reply_message()
     msgid = "msgid_{}".format(content.id)
-    await client.send_message(chat, "{}_{} is Uploaded".format(content, content.id), buttons=[
-        Button.inline('📥 Download', data=msgid.encode())
-    ])
+    await client.send_message(chat,"testing", file=reply)
+    #await client.send_message(chat, "{}_{} is Uploaded".format(content.message, content.id), buttons=[
+    #    Button.inline('📥 Download', data=msgid.encode())
+    #])
     #await client.send_message(-1001375180691, """Warning.! Are you Adult?""", buttons=[
     #    Button.inline('Yes!', "{}={}".format(content.message,content.id)),
     #    Button.inline('No', b'no')
