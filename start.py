@@ -17,7 +17,7 @@ async def sendvid(event):
     chat = await event.get_chat()
     conten = await event.get_reply_message()
     content = "{}".format(conten)
-    msgid = "msgid_{}".format(content.id)
+    #msgid = "msgid_{}".format(content.id)
     #await client.send_message(chat,"test", file=content)
     await client.send_message(chat, "🎞️ {} is Uploaded".format(content.message), buttons=[
         Button.inline('📥 Download', data=content.encode())
