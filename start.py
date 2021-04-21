@@ -17,13 +17,13 @@ async def sendvid(event):
     chat = await event.get_chat()
     content = await event.get_reply_message()
     msgid = "msgid_{}".format(content.id)
-    await client.send_message(chat,"test", file=content)
-    #await client.send_message(chat, "{}_{} is Uploaded".format(content.message, content.id), buttons=[
-    #    Button.inline('📥 Download', data=msgid.encode())
-    #])
-    #await client.send_message(-1001375180691, """Warning.! Are you Adult?""", buttons=[
-    #    Button.inline('Yes!', "{}={}".format(content.message,content.id)),
-    #    Button.inline('No', b'no')
+    #await client.send_message(chat,"test", file=content)
+    await client.send_message(chat, "🎞️ {} is Uploaded".format(content.message), buttons=[
+        Button.inline('📥 Download', data=content.encode())
+    ])
+    #await client.send_message(-1001375180691, """Warning.! Please confirm your age, Download & watch at your own risk!""", buttons=[
+    #    Button.inline('😁 above 18 years', "{}={}".format(content.message,content.id)),
+    #    Button.inline('😐 below 18 years', b'no')
     #])
 
 @client.on(events.CallbackQuery)
@@ -31,27 +31,28 @@ async def checkpoint(event):
   try:
     decoded=event.data.decode()
   except:
-    await event.answer("decode failed")
+    await client.send_message(-1001375180691, """Decoding failed""")
   try:
-    if "msgid" in decoded:
-        msgid2="req2" + "_" + "{}".format(event.query.user_id) + "_" + "{}".format(decoded.split('_')[-1])
-        await event.reply("[Hey,](tg://user?id={}) Are you Adult?".format(event.query.user_id), buttons=[
-            Button.inline('👍 Yes', msgid2.encode()),
-            Button.inline('👎 No', b'ano')
+    if decoded is not None:
+        msgid2="req2" + "_" + "{}".format(event.query.user_id) + "_" + "{}".format(decoded)
+        await event.reply("[Hey,](tg://user?id={}) Warning.! Please confirm your age".format(event.query.user_id), buttons=[
+            Button.inline('😁 above 18 years', msgid2.encode()),
+            Button.inline('😐 below 18 years', b'ano')
         ])
     try:
      if decoded.split("_")[-2] != event.query.user_id:
       decoded=decoded.strip()
+      if decoded == "ano":
+        await event.edit('Ok., Thanks for the response.')
+        break
       if "req2" in decoded:
-        await event.reply("{}".format(event.query.user_id))
-        msg = decoded.split("_")[-1]
-        await client.forward_messages(event.query.user_id, msg, -523451499)
+        msg=decoded.split("_")[-1]
+        await client.send_message(event.query.user_id, "msg.message", file=msg)
+        await event.edit("{} sent to [this](tg://user?id={}) user.".format(msg.message, event.query.user_id))
      else:
       await event.answer("Make your own download request.")
     except Exception as e:
       await event.reply("{}".format(e))
-      #if decoded == "ano":
-      #  await client.reply('Ok., Thanks for the response.')
   except:
     pass
     
