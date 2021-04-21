@@ -44,7 +44,7 @@ async def checkpoint(event):
       decoded=decoded.strip()
       if decoded == "ano":
         await event.edit('Ok., Thanks for the response.')
-        break
+        #break
       if "req2" in decoded:
         msg=decoded.split("_")[-1]
         await client.send_message(event.query.user_id, "msg.message", file=msg)
