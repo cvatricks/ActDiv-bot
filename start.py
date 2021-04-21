@@ -35,6 +35,7 @@ async def checkpoint(event):
     await client.send_message(-1001375180691, """Decoding failed""")
   try:
     if decoded is not None:
+        decoded = json.loads(decoded)
         msgid2="req2" + "_" + "{}".format(event.query.user_id) + "_" + "{}".format(decoded)
         await event.reply("[Hey,](tg://user?id={}) Warning.! Please confirm your age".format(event.query.user_id), buttons=[
             Button.inline('😁 above 18 years', msgid2.encode()),
