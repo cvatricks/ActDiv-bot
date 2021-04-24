@@ -10,13 +10,13 @@ client = TelegramClient('anfghohn', int(os.environ.get("APP_ID" )), os.environ.g
 @client.on(events.NewMessage(pattern='/start'))
 async def handler(event):
     chat = await event.get_chat()
-    await client.send_message(chat, "[Hey,](tg://user?id={}) How are you?".format(chat))
+    await client.send_message(chat, "[Hey](tg://user?id={}) How are you?".format(chat.id))
 
 @client.on(events.NewMessage(chats=[-523451499], pattern='/send'))
 async def sendvid(event):
     chat = await event.get_chat()
     content = await event.get_reply_message()
-    await client.send_message(chat, "📹 {}_{}".format(content.message, content.id), button=[
+    await client.send_message(chat, "📹 {}_{}".format(content.message, content.id), buttons=[
         Button.inline('📥 Download', b'send')
     ])
 
