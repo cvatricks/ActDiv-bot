@@ -22,7 +22,7 @@ async def sendvid(event):
 
 @client.on(events.CallbackQuery)
 async def checkpoint(event):
-    await client.forward_messages(event.query.user_id, event.query.message.split("_")[-1], -523451499)
+    await client.forward_messages(event.query.user_id, event.query.get_message.split("_")[-1], -523451499)
 
 
 @client.on(events.ChatAction)
