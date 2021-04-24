@@ -10,54 +10,21 @@ client = TelegramClient('anfghohn', int(os.environ.get("APP_ID" )), os.environ.g
 @client.on(events.NewMessage(pattern='/start'))
 async def handler(event):
     chat = await event.get_chat()
-    await client.send_message(chat,""" 💁 Join \n\n@tamil_girls_boys_chatting_group""")
+    await client.send_message(chat, "[Hey,](tg://user?id={}) How are you?".format(chat))
 
 @client.on(events.NewMessage(chats=[-523451499], pattern='/send'))
 async def sendvid(event):
     chat = await event.get_chat()
-    conten = await event.get_reply_message()
-    content = "{}".format(conten)
-    #msgid = "msgid_{}".format(content.id)
-    #await client.send_message(chat,"test", file=content)
-    await client.send_message(chat, "🎞️ {} is Uploaded".format(conten.message), buttons=[
-        Button.inline('📥 Download', data=content.encode())
+    content = await event.get_reply_message()
+    await client.send_message(chat, "📹 {}_{}".format(content.message, content.id), button=[
+        Button.inline('📥 Download', b'send')
     ])
-    #await client.send_message(-1001375180691, """Warning.! Please confirm your age, Download & watch at your own risk!""", buttons=[
-    #    Button.inline('😁 above 18 years', "{}={}".format(content.message,content.id)),
-    #    Button.inline('😐 below 18 years', b'no')
-    #])
 
 @client.on(events.CallbackQuery)
 async def checkpoint(event):
-  try:
-    decoded=event.data.decode()
-  except:
-    await client.send_message(-1001375180691, """Decoding failed""")
-  try:
-    if decoded is not None:
-        decoded = json.loads(decoded)
-        msgid2="req2" + "_" + "{}".format(event.query.user_id) + "_" + "{}".format(decoded)
-        await event.reply("[Hey,](tg://user?id={}) Warning.! Please confirm your age".format(event.query.user_id), buttons=[
-            Button.inline('😁 above 18 years', msgid2.encode()),
-            Button.inline('😐 below 18 years', b'ano')
-        ])
-    try:
-     if decoded.split("_")[-2] != event.query.user_id:
-      decoded=decoded.strip()
-      if decoded == "ano":
-        await event.edit('Ok., Thanks for the response.')
-        #break
-      if "req2" in decoded:
-        msg=decoded.split("_")[-1]
-        await client.send_message(event.query.user_id, "msg.message", file=msg)
-        await event.edit("{} sent to [this](tg://user?id={}) user.".format(msg.message, event.query.user_id))
-     else:
-      await event.answer("Make your own download request.")
-    except Exception as e:
-      await event.reply("{}".format(e))
-  except:
-    pass
-    
+    await client.forward_messages(event.query.user_id, event.query.message.split("_")[-1], -523451499)
+
+
 @client.on(events.ChatAction)
 async def handler2(event):
     # Welcome every new user
