@@ -34,7 +34,7 @@ async def handler2(event):
         markup = client.build_reply_markup(Button.url("💖 Share 💖","tg://msg?text=%2A%2AHai%20%E2%9D%A4%EF%B8%8F%2C%2A%2A%20%0A%0AToday%20I%20have%20found%20an%20intresting%20Group%20for%20Free%20Chatting.%0A%0A%2A%2AUnlimited%20Entertainment%20for%20FREE%21%21%21%2A%2A%0A%20%20%0AGroup%20Link%20%3A%20%40tamil_girls_boys_chatting_group"))
         await event.reply('Welcome to the group!', buttons=markup)
 
-@client.on(events.NewMessage(chats=[os.environ.get("CHAT_ID")]))
+@client.on(events.NewMessage(chats=[int(os.environ.get("CHAT_ID"))]))
 async def handler3(event):
         # Reference for retrieve all posts from Blogger   --->  https://blogname.blogspot.com/feeds/posts/default?alt=json-in-script&callback=myFunc
         #with open("backup.json", "r", encoding="utf8") as f:
